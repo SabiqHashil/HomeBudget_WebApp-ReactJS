@@ -9,12 +9,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <Dashboard />,
     loader: dashboardLoader,
+    errorElement: <Error />,
   },
 
-  {
-    path: "*",
-    element: <Error />,
-  },
+  // {
+  //   path: "*",
+  //   element: <Error />,
+  // },
 ]);
 
 function App() {
