@@ -14,7 +14,7 @@ const AddBudgetForm = () => {
             type="text"
             name="newBudget"
             id="newBudget"
-            placeholder="e.g., Groceries"
+            placeholder="e.g. Groceries"
             required
           />
         </div>
@@ -24,7 +24,7 @@ const AddBudgetForm = () => {
             type="number"
             step="0.01"
             name="newBudgetAmount"
-            placeholder="e.g., $350"
+            placeholder="e.g. $350"
             required
             inputMode="decimal"
           />
