@@ -24,6 +24,7 @@ const AddBudgetForm = () => {
             type="number"
             step="0.01"
             name="newBudgetAmount"
+            id="newBudgetAmount"
             placeholder="e.g. $350"
             required
             inputMode="decimal"
@@ -34,7 +35,6 @@ const AddBudgetForm = () => {
           <span>Create budget</span>
           <CurrencyDollarIcon width={20} />
         </button>
-        
       </Form>
     </div>
   );
