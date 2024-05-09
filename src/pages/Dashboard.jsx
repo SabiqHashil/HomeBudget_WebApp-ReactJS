@@ -9,27 +9,27 @@ import Intro from "../components/Intro";
 import AddBudgetForm from "../components/AddBudgetForm";
 
 //  helper functions
-import { createBudget, fetchData } from "../helpers"
+import { createBudget, fetchData } from "../helpers";
 
 // loader
 export function dashboardLoader() {
   const userName = fetchData("userName");
   const budgets = fetchData("budgets");
-  return { userName, budgets }
+  return { userName, budgets };
 }
 
 // action
 export async function dashboardAction({ request }) {
   const data = await request.formData();
-  const { _action, ...values } = Object.fromEntries(data)
+  const { _action, ...values } = Object.fromEntries(data);
 
   // new user submission
   if (_action === "newUser") {
     try {
-      localStorage.setItem("userName", JSON.stringify(values.userName))
-      return toast.success(`Welcome, ${values.userName}`)
+      localStorage.setItem("userName", JSON.stringify(values.userName));
+      return toast.success(`Welcome, ${values.userName}`);
     } catch (e) {
-      throw new Error("There was a problem creating your account.")
+      throw new Error("There was a problem creating your account.");
     }
   }
 
@@ -38,22 +38,24 @@ export async function dashboardAction({ request }) {
       createBudget({
         name: values.newBudget,
         amount: values.newBudgetAmount,
-      })
-      return toast.success("Budget created!")
+      });
+      return toast.success("Budget created!");
     } catch (e) {
-      throw new Error("There was a problem creating your budget.")
+      throw new Error("There was a problem creating your budget.");
     }
   }
 }
 
 const Dashboard = () => {
-  const { userName, budgets } = useLoaderData()
+  const { userName, budgets } = useLoaderData();
 
   return (
     <>
       {userName ? (
         <div className="dashboard">
-          <h1>Welcome back, <span className="accent">{userName}</span></h1>
+          <h1>
+            Welcome back, <span className="accent">{userName}</span>
+          </h1>
           <div className="grid-sm">
             {/* {budgets ? () : ()} */}
             <div className="grid-lg">
@@ -63,8 +65,10 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      ) : <Intro />}
+      ) : (
+        <Intro />
+      )}
     </>
-  )
-}
-export default Dashboard
+  );
+};
+export default Dashboard;
