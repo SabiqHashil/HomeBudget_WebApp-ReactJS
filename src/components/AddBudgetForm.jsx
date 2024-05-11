@@ -2,10 +2,10 @@
 import { useEffect, useRef } from "react";
 
 // rrd imports
-import { Form, useFetcher } from "react-router-dom";
+import { useFetcher } from "react-router-dom";
 
 // library imports
-import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
+import { CurrencyRupeeIcon } from "@heroicons/react/24/solid";
 
 const AddBudgetForm = () => {
   const fetcher = useFetcher();
@@ -55,7 +55,7 @@ const AddBudgetForm = () => {
           ) : (
             <>
               <span>Create budget</span>
-              <CurrencyDollarIcon width={20} />
+              <CurrencyRupeeIcon width={20} />
             </>
           )}
         </button>

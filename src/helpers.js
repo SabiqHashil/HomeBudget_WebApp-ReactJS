@@ -87,8 +87,8 @@ export const formatPercentage = (amt) => {
 
 // Format currency
 export const formatCurrency = (amt) => {
-  return amt.toLocaleString(undefined, {
+  return amt.toLocaleString("en-IN", {
     style: "currency",
-    currency: "USD",
+    currency: "INR",
   });
 };
