@@ -31,7 +31,7 @@ const AddBudgetForm = () => {
             type="text"
             name="newBudget"
             id="newBudget"
-            placeholder="e.g., Groceries"
+            placeholder="e.g., Books"
             required
             ref={focusRef}
           />
@@ -43,7 +43,7 @@ const AddBudgetForm = () => {
             step="0.01"
             name="newBudgetAmount"
             id="newBudgetAmount"
-            placeholder="e.g., ₹250"
+            placeholder="e.g., ₹10000"
             required
             inputMode="decimal"
           />
