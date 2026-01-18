@@ -1,7 +1,8 @@
 // rrd imports
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 // library import
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { toast } from "react-toastify";
 
 // component imports
@@ -40,6 +41,10 @@ const ExpensesPage = () => {
   return (
     <div className="grid-lg">
       <h1>All Expenses</h1>
+      <Link to="/" className="btn">
+        <ArrowLeftIcon width={20} />
+        <span>Back to Dashboard</span>
+      </Link>
       {expenses && expenses.length > 0 ? (
         <div className="grid-md">
           <h2>

@@ -9,6 +9,7 @@ import Main, { mainLoader } from "./layouts/Main";
 
 // Actions
 import { logoutAction } from "./actions/logout";
+import { deleteAccountAction } from "./actions/deleteAccount";
 import { deleteBudget } from "./actions/deleteBudget";
 
 // Routes
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "logout",
         action: logoutAction,
+      },
+      {
+        path: "delete-account",
+        action: deleteAccountAction,
       },
     ],
   },

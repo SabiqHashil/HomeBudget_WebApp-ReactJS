@@ -10,15 +10,26 @@ import {
   formatDateToLocaleString,
   getAllMatchingItems,
 } from "../helpers";
+import { useState } from "react";
+import ConfirmDialog from "./ConfirmDialog";
 
 const ExpenseItem = ({ expense, showBudget }) => {
   const fetcher = useFetcher();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const budget = getAllMatchingItems({
     category: "budgets",
     key: "id",
     value: expense.budgetId,
   })[0];
+
+  const confirmDelete = () => {
+    fetcher.submit(
+      { _action: "deleteExpense", expenseId: expense.id },
+      { method: "post" }
+    );
+    setShowDeleteModal(false);
+  };
 
   return (
     <>
@@ -38,17 +49,23 @@ const ExpenseItem = ({ expense, showBudget }) => {
         </td>
       )}
       <td>
-        <fetcher.Form method="post">
-          <input type="hidden" name="_action" value="deleteExpense" />
-          <input type="hidden" name="expenseId" value={expense.id} />
-          <button
-            type="submit"
-            className="btn btn--warning"
-            aria-label={`Delete ${expense.name} expense`}
-          >
-            <TrashIcon width={20} />
-          </button>
-        </fetcher.Form>
+        <button
+          className="btn btn--warning"
+          aria-label={`Delete ${expense.name} expense`}
+          onClick={() => setShowDeleteModal(true)}
+        >
+          <TrashIcon width={20} />
+        </button>
+
+        <ConfirmDialog
+          open={showDeleteModal}
+          title="Delete Expense"
+          message={`Are you sure you want to delete the expense "${expense.name}"?`}
+          onConfirm={confirmDelete}
+          onCancel={() => setShowDeleteModal(false)}
+          confirmText="Delete"
+          confirmStyle="warning"
+        />
       </td>
     </>
   );

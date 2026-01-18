@@ -1,7 +1,8 @@
 // rrd imports
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 // library
+import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { toast } from "react-toastify";
 
 // components
@@ -77,6 +78,10 @@ const BudgetPage = () => {
       <h1 className="h2">
         <span className="accent">{budget.name}</span> Overview
       </h1>
+      <Link to="/" className="btn">
+        <ArrowLeftIcon width={20} />
+        <span>Back to Dashboard</span>
+      </Link>
       <div className="flex-lg">
         <BudgetItem budget={budget} showDelete={true} />
         <AddExpenseForm budgets={[budget]} />

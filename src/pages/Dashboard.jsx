@@ -36,9 +36,16 @@ export async function dashboardAction({ request }) {
   const { _action, ...values } = Object.fromEntries(data);
 
   // new user submission
-  if (_action === "newUser") {
+  if (_action === "newUser" || _action === "loginUser") {
     try {
       localStorage.setItem("userName", JSON.stringify(values.userName));
+
+      // Update users list if it's a new user
+      const existingUsers = fetchData("users") ?? [];
+      if (_action === "newUser" && !existingUsers.includes(values.userName)) {
+        localStorage.setItem("users", JSON.stringify([...existingUsers, values.userName]));
+      }
+
       return toast.success(`Welcome, ${values.userName}`);
     } catch (e) {
       throw new Error("There was a problem creating your account.");

@@ -1,5 +1,5 @@
 // rrd imports
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useSubmit } from "react-router-dom";
 
 // library imports
 import { BanknotesIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -10,10 +10,19 @@ import {
   formatCurrency,
   formatPercentage,
 } from "../helpers";
+import { useState } from "react";
+import ConfirmDialog from "./ConfirmDialog";
 
 const BudgetItem = ({ budget, showDelete = false }) => {
   const { id, name, amount, color } = budget;
   const spent = calculateSpentByBudget(id);
+  const submit = useSubmit();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const confirmDelete = () => {
+    submit(null, { method: "post", action: "delete" });
+    setShowDeleteModal(false);
+  };
 
   return (
     <div
@@ -35,24 +44,22 @@ const BudgetItem = ({ budget, showDelete = false }) => {
       </div>
       {showDelete ? (
         <div className="flex-sm">
-          <Form
-            method="post"
-            action="delete"
-            onSubmit={(event) => {
-              if (
-                !confirm(
-                  "Are you sure you want to permanently delete this budget?"
-                )
-              ) {
-                event.preventDefault();
-              }
-            }}
+          <button
+            className="btn"
+            onClick={() => setShowDeleteModal(true)}
           >
-            <button type="submit" className="btn">
-              <span>Delete Budget</span>
-              <TrashIcon width={20} />
-            </button>
-          </Form>
+            <span>Delete Budget</span>
+            <TrashIcon width={20} />
+          </button>
+
+          <ConfirmDialog
+            open={showDeleteModal}
+            title="Delete Budget"
+            message="Are you sure you want to permanently delete this budget?"
+            onConfirm={confirmDelete}
+            onCancel={() => setShowDeleteModal(false)}
+            confirmText="Delete Budget"
+          />
         </div>
       ) : (
         <div className="flex-sm">
