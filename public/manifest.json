@@ -1,0 +1,22 @@
+{
+  "short_name": "Home Budget",
+  "name": "Home Budget - Finance Tracker",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1DBBC3",
+  "background_color": "#ffffff"
+}
