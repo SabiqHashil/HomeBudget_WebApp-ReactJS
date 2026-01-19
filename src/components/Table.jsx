@@ -15,7 +15,7 @@ const Table = ({ expenses, showBudget = true }) => {
           </tr>
         </thead>
         <tbody>
-          {expenses.map((expense) => (
+          {expenses.slice().reverse().map((expense) => (
             <tr key={expense.id}>
               <ExpenseItem expense={expense} showBudget={showBudget} />
             </tr>
