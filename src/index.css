@@ -598,3 +598,27 @@ table a {
 .Toastify__toast-body {
   font-size: var(--fs-300);
 }
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--fs-200);
+  color: hsl(var(--muted));
+  background-color: hsl(var(--bkg));
+}
+
+.footer a {
+  color: hsl(var(--accent));
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 300ms ease;
+}
+
+.footer a:hover,
+.footer a:focus-visible {
+  color: hsl(var(--text));
+}
